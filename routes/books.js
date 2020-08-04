@@ -34,14 +34,12 @@ router.post("/", async function (req, res, next) {
 	try {
 		// check book against schema
 		const result = jsonschema.validate(req.body, bookSchema);
-
 		// if book fails against schema throw error
 		if (!result.valid) {
 			let listErr = result.errors.map((e) => e.stack);
 			let error = new ExpressError(listErr, 400);
 			return next(error);
 		}
-
 		// we know book passes and create in DB & return as json
 		const book = await Book.create(req.body.book);
 		return res.status(201).json({ book });
@@ -56,7 +54,6 @@ router.put("/:isbn", async function (req, res, next) {
 	try {
 		// check book against schema
 		const result = jsonschema.validate(req.body, bookSchema);
-
 		// if book fails against schema throw error
 		if (!result.valid) {
 			let listErr = result.errors.map((e) => e.stack);
