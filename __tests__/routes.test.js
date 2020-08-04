@@ -29,7 +29,7 @@ describe("Test Routes", () => {
 		});
 	});
 
-	describe("GET /books/:id", () => {
+	describe("GET /books/:isbn", () => {
 		test("get book from isbn", async () => {
 			let response = await request(app).get(`/books/${b.isbn}`);
 			expect(response.statusCode).toBe(200);
