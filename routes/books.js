@@ -43,7 +43,7 @@ router.post("/", async function (req, res, next) {
 		}
 
 		// we know book passes and create in DB & return as json
-		const book = await Book.create(req.body);
+		const book = await Book.create(req.body.book);
 		return res.status(201).json({ book });
 	} catch (err) {
 		return next(err);
@@ -65,7 +65,7 @@ router.put("/:isbn", async function (req, res, next) {
 		}
 
 		// we know book passes and create in DB & return as json
-		const book = await Book.update(req.params.isbn, req.body);
+		const book = await Book.update(req.params.isbn, req.body.book);
 		return res.json({ book });
 	} catch (err) {
 		return next(err);
